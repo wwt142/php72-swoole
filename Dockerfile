@@ -30,8 +30,8 @@ RUN set -ex \
     && cd  / && rm -fr /src \
     && apk del build-dependencies \
     && rm -rf /tmp/* 
+    
+RUN apk add --no-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing gnu-libiconv
+ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
 
-USER www-data
-
-WORKDIR /var/www
-CMD ["php", "-a"]
+EXPORT 9501
